@@ -1,6 +1,8 @@
 import scapy.all as scapy
 import time
 import argparse
+import os
+import getpass
 
 
 def banner():
@@ -106,28 +108,62 @@ def run(target_ip, gateway):
 
 if __name__ == '__main__':
 
-    banner()
+    if os.name.lower()=='posix':
+        if getpass.getuser().lower()=="root":
+            banner()
 
-    parser = argparse.ArgumentParser()
+            parser = argparse.ArgumentParser()
 
-    parser.add_argument(
-        "-t", "--target",
-        help="TARGET IP",
-        required=True,
-        type=str
-    )
+            parser.add_argument(
+                "-t", "--target",
+                help="TARGET IP",
+                required=True,
+                type=str
+            )
 
-    parser.add_argument(
-        "-g", "--gateway",
-        help="GATEWAY IP",
-        required=True,
-        type=str
-    )
+            parser.add_argument(
+                "-g", "--gateway",
+                help="GATEWAY IP",
+                required=True,
+                type=str
+            )
 
-    args = parser.parse_args()
+            args = parser.parse_args()
 
-    target_ip = args.target
-    gateway = args.gateway
+            target_ip = args.target
+            gateway = args.gateway
 
-    run(target_ip=target_ip,
-        gateway=gateway)
+            run(target_ip=target_ip,
+                gateway=gateway)
+
+        else:
+            print("[!] Run this file as root!")
+
+
+    else:
+        banner()
+
+        parser = argparse.ArgumentParser()
+
+        parser.add_argument(
+            "-t", "--target",
+            help="TARGET IP",
+            required=True,
+            type=str
+        )
+
+        parser.add_argument(
+            "-g", "--gateway",
+            help="GATEWAY IP",
+            required=True,
+            type=str
+        )
+
+        args = parser.parse_args()
+
+        target_ip = args.target
+        gateway = args.gateway
+
+        run(target_ip=target_ip,
+            gateway=gateway)
+
