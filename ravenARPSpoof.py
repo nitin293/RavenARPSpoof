@@ -81,7 +81,6 @@ def run(target_ip, gateway):
 
             print(f"PACKET SENT: {count}\r", end="")
             time.sleep(2)
-
             count += 2
 
     except KeyboardInterrupt:
@@ -97,11 +96,10 @@ def run(target_ip, gateway):
 
             print(f"RESTORE PACKET SENT: {count}")
             time.sleep(1)
-
             count += 2
 
-    except KeyError:
-        run(target_ip=target_ip, gateway=gateway)
+    # except KeyError:
+        # run(target_ip=target_ip, gateway=gateway)
 
     except:
         raise
