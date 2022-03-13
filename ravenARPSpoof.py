@@ -101,16 +101,17 @@ if __name__ == '__main__':
 
                 while True:
                     spoofARP(target_ip=target_ip, gateway=gateway)
-                    print(f"[+] Packet Sent: {count}\r", end="")
                     count += 2
+                    print(f"[+] Packet Sent: {count}\r", end="")
 
             except KeyboardInterrupt:
                 count = 0
                 print("\n[+] Reseting ARP Table...")
                 for pkt in range(2):
                     resetARP(target_ip=target_ip, gateway=gateway)
-                    print(f"[+] Packet Sent: {count}\r", end="")
                     count += 2
+                    print(f"[+] Packet Sent: {count}\r", end="")
+
 
                 print("\n[+] Spoofing Stopped")
                 pass
