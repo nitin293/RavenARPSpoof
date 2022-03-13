@@ -100,11 +100,11 @@ if __name__ == '__main__':
 
     if os.name=="posix":
         if getpass.getuser().lower()=="root":
-            while True:
-                try:
+            try:
+                while True:
                     spoofARP(target_ip=target_ip, gateway=gateway)
                     time.sleep(1)
 
-                except KeyboardInterrupt:
-                    print("\n[+] Stopped")
-                    pass
+            except KeyboardInterrupt:
+                print("\n[+] Stopped")
+                pass
