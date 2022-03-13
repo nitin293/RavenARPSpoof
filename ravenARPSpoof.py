@@ -112,6 +112,5 @@ if __name__ == '__main__':
                     count += 2
                     print(f"[+] Packet Sent: {count}\r", end="")
 
-
                 print("\n[+] Spoofing Stopped")
                 pass
