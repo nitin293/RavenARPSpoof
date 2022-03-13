@@ -70,10 +70,6 @@ def resetARP(target_ip, gateway):
     return
 
 
-
-
-
-
 if __name__ == '__main__':
 
     banner()
@@ -101,10 +97,20 @@ if __name__ == '__main__':
     if os.name=="posix":
         if getpass.getuser().lower()=="root":
             try:
+                count = 0
+
                 while True:
                     spoofARP(target_ip=target_ip, gateway=gateway)
-                    time.sleep(1)
+                    print(f"[+] Packet Sent: {count}\r", end="")
+                    count += 2
 
             except KeyboardInterrupt:
-                print("\n[+] Stopped")
+                count = 0
+                print("\n[+] Reseting ARP Table...")
+                for pkt in range(2):
+                    resetARP(target_ip=target_ip, gateway=gateway)
+                    print(f"[+] Packet Sent: {count}\r", end="")
+                    count += 2
+
+                print("\n[+] Spoofing Stopped")
                 pass
